@@ -40,12 +40,23 @@ public class Player {
     return this.team;
   }
 
+  public Integer getGoalsAndAssists() {
+    return goals + assists;
+  }
+
   public void setTeam(String team) {
     this.team = team;
   }
 
+  //Henrik Borgstrom team FLA goals 0 assists 0
   @Override
   public String toString() {
-    return name;
+    return (
+      name +
+      "\t" +
+      this.getTeam() +
+      " \t" +
+      Integer.toString(this.getGoals() + this.getAssists())
+    );
   }
 }

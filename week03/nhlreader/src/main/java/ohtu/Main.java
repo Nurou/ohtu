@@ -7,8 +7,8 @@ package ohtu;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.*;
+import java.time.LocalDate;
+import java.util.*;
 import org.apache.http.client.fluent.Request;
 
 /**
@@ -22,8 +22,7 @@ public class Main {
 
     String bodyText = Request.Get(url).execute().returnContent().asString();
 
-    System.out.println("json-muotoinen data:");
-    // System.out.println(bodyText);
+    System.out.println("Players from FIN: " + LocalDate.now());
 
     Gson mapper = new Gson();
     Player[] players = mapper.fromJson(bodyText, Player[].class);
@@ -32,6 +31,7 @@ public class Main {
       Arrays
         .stream(players)
         .filter(player -> player.getNationality().equals("FIN"))
+        .sorted(Comparator.comparing(Player::getGoalsAndAssists).reversed())
         .toArray(Player[]::new);
 
     System.out.println("Oliot:");
