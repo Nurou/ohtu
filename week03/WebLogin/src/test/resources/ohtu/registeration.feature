@@ -17,5 +17,5 @@ Feature: A new user account can be created if a proper unused username and passw
 
     Scenario: creation fails when password and password confirmation do not match
         Given command new user is selected
-        When  a valid username "liisa" and password "salainen1" and different password confirmation are entered
+        When  a valid username "liisassssssss" and password "salainen1" and different password confirmation "salainen2" are entered
         Then user is not created and error "password and password confirmation do not match" is reported   

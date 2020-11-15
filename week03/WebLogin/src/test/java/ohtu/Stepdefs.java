@@ -111,14 +111,18 @@ public class Stepdefs {
   }
 
   @When(
-    "a valid username {string} and short password {string} and different password confirmation are entered"
+    "a valid username {string} and password {string} and different password confirmation {string} are entered"
   )
   public void validUsernameAndPasswordAndDifferentConfirmationAreGiven(
     String username,
-    String password
+    String password,
+    String passwordConfirmation
   )
     throws Throwable {
-    registerWith(username, password, password);
+    System.out.println(username);
+    System.out.println(password);
+    System.out.println(passwordConfirmation);
+    registerWith(username, password, passwordConfirmation);
   }
 
   @Then("a new user is created")
@@ -126,9 +130,9 @@ public class Stepdefs {
     pageHasContent("Welcome to Ohtu Application!");
   }
 
-  @Then("a new user is not created")
-  public void newUserIsNotCreated() throws Throwable {
-    pageHasContent("Welcome to Ohtu Application!");
+  @Then("user is not created and error {string} is reported")
+  public void newUserIsNotCreated(String errorMessage) throws Throwable {
+    pageHasContent(errorMessage);
   }
 
   @After
@@ -167,7 +171,7 @@ public class Stepdefs {
     element = driver.findElement(By.name("password"));
     element.sendKeys(password);
     element = driver.findElement(By.name("passwordConfirmation"));
-    element.sendKeys(password);
+    element.sendKeys(passwordConfirm);
     element = driver.findElement(By.name("signup"));
     element.submit();
   }
