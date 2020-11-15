@@ -88,8 +88,46 @@ public class Stepdefs {
     registerWith(username, password, password);
   }
 
+  @When(
+    "a short username {string} and password {string} and matching password confirmation are entered"
+  )
+  public void shortUsernameAndPasswordAreGiven(
+    String username,
+    String password
+  )
+    throws Throwable {
+    registerWith(username, password, password);
+  }
+
+  @When(
+    "a valid username {string} and short password {string} and matching password confirmation are entered"
+  )
+  public void validUsernameAndShortPasswordAreGiven(
+    String username,
+    String password
+  )
+    throws Throwable {
+    registerWith(username, password, password);
+  }
+
+  @When(
+    "a valid username {string} and short password {string} and different password confirmation are entered"
+  )
+  public void validUsernameAndPasswordAndDifferentConfirmationAreGiven(
+    String username,
+    String password
+  )
+    throws Throwable {
+    registerWith(username, password, password);
+  }
+
   @Then("a new user is created")
   public void newUserIsCreated() throws Throwable {
+    pageHasContent("Welcome to Ohtu Application!");
+  }
+
+  @Then("a new user is not created")
+  public void newUserIsNotCreated() throws Throwable {
     pageHasContent("Welcome to Ohtu Application!");
   }
 
