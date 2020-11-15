@@ -119,9 +119,6 @@ public class Stepdefs {
     String passwordConfirmation
   )
     throws Throwable {
-    System.out.println(username);
-    System.out.println(password);
-    System.out.println(passwordConfirmation);
     registerWith(username, password, passwordConfirmation);
   }
 
@@ -133,6 +130,13 @@ public class Stepdefs {
   @Then("user is not created and error {string} is reported")
   public void newUserIsNotCreated(String errorMessage) throws Throwable {
     pageHasContent(errorMessage);
+  }
+
+  @Given(
+    "user with username {string} with password {stirng} is successfully created"
+  )
+  public void userIsSuccessfullyCreated(String username, String password) {
+    registerWith(username, password, password);
   }
 
   @After
