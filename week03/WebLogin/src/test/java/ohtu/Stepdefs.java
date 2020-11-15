@@ -133,9 +133,20 @@ public class Stepdefs {
   }
 
   @Given(
-    "user with username {string} with password {stirng} is successfully created"
+    "user with username {string} with password {string} is successfully created"
   )
   public void userIsSuccessfullyCreated(String username, String password) {
+    driver.get(baseUrl + "/user");
+
+    registerWith(username, password, password);
+  }
+
+  @Given(
+    "user with username {string} and password {string} is tried to be created"
+  )
+  public void userCreationFails(String username, String password) {
+    driver.get(baseUrl + "/user");
+
     registerWith(username, password, password);
   }
 
