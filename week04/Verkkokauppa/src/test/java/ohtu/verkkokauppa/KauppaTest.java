@@ -20,12 +20,15 @@ public class KauppaTest {
   Varasto varasto;
   Kauppa k;
 
+  Tuote maito;
+
   @After
   public void tearDown() {
     pankki = null;
     viite = null;
     varasto = null;
     k = null;
+    maito = null;
   }
 
   @Before
@@ -44,7 +47,9 @@ public class KauppaTest {
     // out of stock item
     when(varasto.saldo(3)).thenReturn(0);
 
-    when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+    maito = new Tuote(1, "maito", 5);
+
+    when(varasto.haeTuote(1)).thenReturn(maito);
     when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "makkara", 20));
     when(varasto.haeTuote(3)).thenReturn(new Tuote(2, "kana", 20));
 
@@ -117,5 +122,41 @@ public class KauppaTest {
 
     // sitten suoritetaan varmistus, että pankin metodia tilisiirto on kutsuttu
     verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 5);
+  }
+
+  @Test
+  public void asionninAloittaminenNollaaEdellisenOstoksenTiedot() {
+    k.aloitaAsiointi();
+
+    verify(pankki, times(0))
+      .tilisiirto(anyString(), anyInt(), anyString(), anyString(), anyInt());
+  }
+
+  @Test
+  public void kauppaPyytääUudenViiteumeronJokaiselleMaksutapahtumalle() {
+    when(viite.uusi()).thenReturn(1).thenReturn(2).thenReturn(3);
+
+    k.aloitaAsiointi();
+    k.lisaaKoriin(1);
+    k.tilimaksu("pekka", "12345");
+
+    verify(pankki)
+      .tilisiirto(anyString(), eq(1), anyString(), anyString(), anyInt());
+
+    k.aloitaAsiointi();
+    k.lisaaKoriin(2);
+    k.tilimaksu("pekka", "12345");
+
+    verify(pankki)
+      .tilisiirto(anyString(), eq(2), anyString(), anyString(), anyInt());
+  }
+
+  @Test
+  public void koristaPostaminenPostaaTuotteen() {
+    k.aloitaAsiointi();
+    k.lisaaKoriin(1);
+    k.poistaKorista(1);
+
+    verify(varasto, times(1)).palautaVarastoon(maito);
   }
 }
