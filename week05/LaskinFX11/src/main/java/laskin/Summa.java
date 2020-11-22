@@ -19,11 +19,12 @@ public class Summa extends Komento {
 
   @Override
   public void suorita() {
+    this.prevResult = sovellus.tulos();
     sovellus.plus(0);
   }
 
   @Override
   public void peru() {
-    return;
+    sovellus.setTulos(prevResult);
   }
 }

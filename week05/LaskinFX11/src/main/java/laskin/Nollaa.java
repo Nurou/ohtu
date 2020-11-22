@@ -19,12 +19,12 @@ public class Nollaa extends Komento {
 
   @Override
   public void suorita() {
+    this.prevResult = sovellus.tulos();
     sovellus.nollaa();
   }
 
   @Override
   public void peru() {
-    // sovellus.nollaa();
-    return;
+    sovellus.setTulos(prevResult);
   }
 }

@@ -19,12 +19,12 @@ public class Erotus extends Komento {
 
   @Override
   public void suorita() {
+    this.prevResult = sovellus.tulos();
     sovellus.miinus(0);
   }
 
   @Override
   public void peru() {
-    // sovellus.miinus(0);
-    return;
+    sovellus.setTulos(prevResult);
   }
 }

@@ -13,6 +13,8 @@ public abstract class Komento {
   protected Button undo;
   protected Sovelluslogiikka sovellus;
 
+  protected int prevResult;
+
   public Komento(
     TextField tuloskentta,
     TextField syotekentta,
@@ -25,6 +27,8 @@ public abstract class Komento {
     this.nollaa = nollaa;
     this.undo = undo;
     this.sovellus = sovellus;
+
+    this.prevResult = 0;
   }
 
   public abstract void suorita();
