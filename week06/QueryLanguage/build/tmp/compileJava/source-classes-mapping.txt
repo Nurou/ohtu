@@ -1,0 +1,24 @@
+statistics/matcher/Matcher.java
+ statistics.matcher.Matcher
+statistics/PlayerReader.java
+ statistics.PlayerReader
+statistics/PlayerReaderImpl.java
+ statistics.PlayerReaderImpl
+statistics/matcher/PlaysIn.java
+ statistics.matcher.PlaysIn
+statistics/matcher/HasAtLeast.java
+ statistics.matcher.HasAtLeast
+statistics/Player.java
+ statistics.Player
+statistics/matcher/Not.java
+ statistics.matcher.Not
+statistics/Statistics.java
+ statistics.Statistics
+statistics/matcher/All.java
+ statistics.matcher.All
+statistics/matcher/And.java
+ statistics.matcher.And
+statistics/matcher/HasFewerThan.java
+ statistics.matcher.HasFewerThan
+statistics/Main.java
+ statistics.Main
