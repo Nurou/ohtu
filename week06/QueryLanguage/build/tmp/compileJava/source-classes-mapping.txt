@@ -20,5 +20,7 @@ statistics/matcher/And.java
  statistics.matcher.And
 statistics/matcher/HasFewerThan.java
  statistics.matcher.HasFewerThan
+statistics/matcher/Or.java
+ statistics.matcher.Or
 statistics/Main.java
  statistics.Main
