@@ -13,6 +13,11 @@ public class QueryBuilder {
     return this;
   }
 
+  public QueryBuilder oneOf(Matcher m1, Matcher m2) {
+    this.m = new Or(m1, m2);
+    return this;
+  }
+
   public QueryBuilder hasAtLeast(int value, String category) {
     this.m = new And(this.m, new HasAtLeast(value, category));
     return this;
